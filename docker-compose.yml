@@ -1,0 +1,21 @@
+version: "3.9"
+
+x-bot-common: &bot-common
+  build: .
+  restart: always
+  env_file:
+    - .env
+  environment:
+    - DISCORD_TOKEN=${DISCORD_TOKEN}
+    - join_channel_id=${join_channel_id}
+    - leave_channel_id=${leave_channel_id}
+    - i_am_live_channel_id=${i_am_live_channel_id}
+
+services:
+  yantrik-bot-blue:
+    <<: *bot-common
+    container_name: yantrik-bot-blue
+
+  yantrik-bot-green:
+    <<: *bot-common
+    container_name: yantrik-bot-green
